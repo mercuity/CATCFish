@@ -8,7 +8,7 @@ def SendLocalSMPT(sender,password, recipient, subject, body,host,port):
         msg["From"] = sender
         msg["To"] = recipient
         msg["Subject"] = subject
-        msg.attach(MIMEText(body, "plain", "utf-8"))
+        msg.attach(MIMEText(body, "html", "utf-8"))
 
 
         with smtplib.SMTP_SSL(host, port) as server:

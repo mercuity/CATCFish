@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8">
+    <title>Вход</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 40px; }
+        form { max-width: 300px; }
+        label { display: block; margin-top: 10px; }
+        input { width: 100%; padding: 6px; margin-top: 4px; box-sizing: border-box; }
+        button { margin-top: 16px; padding: 8px 16px; }
+    </style>
+</head>
+<body>
+    <h2>Войдите в систему</h2>
+    <form method="POST" action="/login">
+        <label for="login">Логин:</label>
+        <input type="text" id="login" name="login" required>
+
+        <label for="password">Пароль:</label>
+        <input type="password" id="password" name="password" required>
+
+        <input type="hidden" name="id" value="{{ id }}"> 
+        <button type="submit">Отправить</button>
+    </form>
+</body>
+</html>

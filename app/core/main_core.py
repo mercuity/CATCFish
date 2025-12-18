@@ -1,10 +1,10 @@
 from .GlobalSMPT import SendGlobalSMPT #sender,password, recipient, subject, body
 from .LocalSMPT import SendLocalSMPT #sender,password, recipient, subject, body, host,port
 import csv
-from base64 import b64decode, b64encode
+from base64 import b64encode
 
-#print(SendLocalSMPT("goida@mail.ru", "", "root@kali.localdomain", "GOIDA", "goida femboy is good", "192.168.213.128", 25))
-def attack(sender,password,table,chekSMPT,host,port):
+
+def attack(sender,password,table,chekSMPT,host,port,domain):
     name, email, rab = [], [], []
     with open(table, newline='', encoding='utf-8') as f:
         reader = csv.reader(f)
@@ -19,9 +19,10 @@ def attack(sender,password,table,chekSMPT,host,port):
             return 1 
         
     for i in range(0,len(email)):
+        link = "http://"+domain+f"/login?id={b64encode(email[i].encode('utf-8')).decode('ascii')}"
         try:
             #Нейросеть <- фио, должность ссылку
             if(chekSMPT == False):
-                print(SendGlobalSMPT(sender,password,email[i],name[i],rab[i]))
+                print(SendGlobalSMPT(sender,password,email[i],name[i],link))
         except Exception as e:
             print(e,email[i])

@@ -11,7 +11,6 @@ def create_tab1(parent, tablePath):
     frame = ttk.Frame(parent, padding=20)
 
     localSMPT = tk.BooleanVar(value=False)
-    email_var = tk.StringVar()
 
     def select_file():
         path = filedialog.askopenfilename(
@@ -41,7 +40,7 @@ def create_tab1(parent, tablePath):
 
     #Почта
     ttk.Label(frame, text="Отправитель:").grid(row=0, column=0, sticky="w", pady=(0, 5))
-    sender = ttk.Entry(frame, width=40, textvariable=email_var)
+    sender = ttk.Entry(frame, width=40)
     sender.grid(column=0, pady=(0, 15))
 
     #Пароль
@@ -51,10 +50,10 @@ def create_tab1(parent, tablePath):
 
     #Выбор таблицы
     table = ttk.Button(frame, text="Выбрать таблицу", command=select_file)
-    table.grid(row=5, column=0, pady=(0, 15))
+    table.grid(row=6, column=0, pady=(0, 15))
 
     fileLabel = ttk.Label(frame, text="Таблица не выбрана", foreground="gray")
-    fileLabel.grid(row=5, column=1, pady=(0, 15))
+    fileLabel.grid(row=6, column=1, pady=(0, 15))
 
     #Local SMPT
     chekSMPT = ttk.Checkbutton(frame, text="Local SMPT Server", variable=localSMPT, onvalue=True, offvalue=False)
@@ -66,9 +65,14 @@ def create_tab1(parent, tablePath):
     host.grid(row=1,column=2, pady=(0, 15))
 
     #Порт
-    ttk.Label(frame, text="Порт:").grid(row=2, column=2, sticky="w", pady=(0, 5))
+    ttk.Label(frame, text="Порт:").grid(row=3, column=2, sticky="w", pady=(0, 5))
     port = ttk.Entry(frame, width=40)
     port.grid(row=3,column=2, pady=(0, 15))
+    
+    #domain
+    ttk.Label(frame, text="Домен:").grid(row=4, column=0, sticky="w", pady=(0, 5))
+    domain = ttk.Entry(frame, width=40)
+    domain.grid(row=5,column=0, pady=(0, 15))
     
     def attacks():
         app = create_app(tablePath.get())
@@ -76,7 +80,7 @@ def create_tab1(parent, tablePath):
             app.run(host='0.0.0.0', port=80, threaded=True)
         server_thread = threading.Thread(target=runServer, daemon=True)
         server_thread.start()
-        attack(sender.get(),password.get(),tablePath.get(),localSMPT.get(),host.get(),port.get())
+        attack(sender.get(),password.get(),tablePath.get(),localSMPT.get(),host.get(),port.get(), domain.get())
         
     
     #Кнопка запуска

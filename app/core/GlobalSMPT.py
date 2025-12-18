@@ -37,7 +37,7 @@ def SendGlobalSMPT(sender,password, recipient, subject, body):
         msg["From"] = sender
         msg["To"] = recipient
         msg["Subject"] = subject
-        msg.attach(MIMEText(body, "plain", "utf-8"))
+        msg.attach(MIMEText(body, "html", "utf-8"))
 
 
         with smtplib.SMTP_SSL(config["server"], config["port_ssl"]) as server:

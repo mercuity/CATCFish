@@ -4,6 +4,8 @@ import csv
 import os
 from datetime import datetime
 from core.main_core import attack
+from core.site import create_app
+import threading
 
 def create_tab1(parent, tablePath):
     frame = ttk.Frame(parent, padding=20)
@@ -69,12 +71,21 @@ def create_tab1(parent, tablePath):
     port.grid(row=3,column=2, pady=(0, 15))
     
     def attacks():
+        app = create_app(tablePath.get())
+        def runServer():
+            app.run(host='0.0.0.0', port=80, threaded=True)
+        server_thread = threading.Thread(target=runServer, daemon=True)
+        server_thread.start()
         attack(sender.get(),password.get(),tablePath.get(),localSMPT.get(),host.get(),port.get())
+        
     
     #Кнопка запуска
     start_btn = ttk.Button(frame, text="Запустить тестирование", command=attacks) 
     start_btn.grid(column=1)
 
+    host.config(state="disabled")
+    port.config(state="disabled")
+            
     def select_localSMPT(*_):
         if localSMPT.get():
             host.config(state="normal")

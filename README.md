@@ -34,7 +34,7 @@ python3 main.py
 - Пароль от SMPT сервера
 - Если SMPT сервер не gmail.ru, yandex.ru, mail.ru, то ввести:
   - host
-  - 'port'  
+  - port
 2. Загрузить csv таблицу  
 3. Нажать на "Запуск аттаки"
 

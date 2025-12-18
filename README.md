@@ -22,7 +22,7 @@
 ## Установка
 ```bash
 git clone https://github.com/mercuity/CATCFish.git
-cd CATCFish
+cd CATCFish/app
 ```
 ---
 ## Использование

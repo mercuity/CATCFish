@@ -18,7 +18,7 @@ def start_gui():
 
     controls, tab1 = create_tab1(notebook, tablePath)
     tab2 = create_tab2(notebook, tablePath)
-    tab3 = create_tab3(notebook, controls)
+    tab3 = create_tab3(notebook, controls, tablePath)
     #tab4 = create_tab4(notebook)
 
     notebook.add(tab1, text="Старт")

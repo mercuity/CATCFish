@@ -5,6 +5,7 @@ import os
 from datetime import datetime
 from core.main_core import attack
 from core.site import create_app
+from core.readmail import readMail
 import threading
 
 def create_tab1(parent, tablePath):
@@ -74,6 +75,16 @@ def create_tab1(parent, tablePath):
     domain = ttk.Entry(frame, width=40)
     domain.grid(row=5,column=0, pady=(0, 15))
     
+    #Почта
+    ttk.Label(frame, text="Почта IT:").grid(column=0, sticky="w", pady=(0, 5))
+    emailRead = ttk.Entry(frame, width=40)
+    emailRead.grid(column=0, pady=(0, 15))
+
+    #Пароль
+    ttk.Label(frame, text="Пароль:").grid(column=0, sticky="w", pady=(0, 5))
+    passwordRead = ttk.Entry(frame, show="*", width=40)
+    passwordRead.grid(column=0, pady=(0, 15))
+    
     def attacks():
         app = create_app(tablePath.get())
         def runServer():
@@ -98,5 +109,12 @@ def create_tab1(parent, tablePath):
             host.config(state="disabled")
             port.config(state="disabled")
     localSMPT.trace_add("write", select_localSMPT)
-    
-    return frame
+    controls = {
+        "domain": domain,
+        "tablePath": tablePath,
+        "emailRead": emailRead,
+        "passwordRead": passwordRead,
+        "host": host,
+        "port": port,
+    }
+    return controls, frame

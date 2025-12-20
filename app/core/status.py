@@ -3,8 +3,8 @@ from base64 import b64decode
 
 def setStatus(id, stat, table):
     email = b64decode(id).decode('utf-8').strip().lower()
+    print(email,stat)
     newRows = []
-
     with open(table, mode='r', encoding='utf-8') as f:
         reader = csv.DictReader(f)
         fieldNames = reader.fieldnames

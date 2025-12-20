@@ -2,6 +2,7 @@ from .GlobalSMPT import SendGlobalSMPT #sender,password, recipient, subject, bod
 from .LocalSMPT import SendLocalSMPT #sender,password, recipient, subject, body, host,port
 import csv
 from base64 import b64encode
+from .readmail import readMail
 
 
 def attack(sender,password,table,chekSMPT,host,port,domain):

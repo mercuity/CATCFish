@@ -1,7 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
-from core.readmail import readMail  # ← Убедитесь, что импорт правильный (у вас было .start.readMai — опечатка?)
-import threading  # ← Добавьте, если readMail блокирующая
+from core.readmail import readMail 
 
 def create_tab3(parent, controls):
     frame = ttk.Frame(parent, padding=20)
